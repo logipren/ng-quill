@@ -136,7 +136,7 @@
 
       this.setter = function (value) {
         if (format === 'html') {
-          return editor.clipboard.convert(this.sanitize ? $sanitize(value) : value)
+          return editor.clipboard.convert({html: this.sanitize ? $sanitize(value) : value})
         } else if (this.format === 'json') {
           try {
             return JSON.parse(value)
@@ -399,7 +399,7 @@
               editor.setText(content, 'silent')
             }
           } else {
-            editor.setContents(editor.clipboard.convert(this.sanitize ? $sanitize(content) : content, 'silent'))
+            editor.setContents(editor.clipboard.convert({html: this.sanitize ? $sanitize(content) : content}, 'silent'))
           }
 
           editor.history.clear()
